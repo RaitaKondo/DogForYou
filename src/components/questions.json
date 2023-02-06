@@ -1,0 +1,61 @@
+{
+    "shedding":{
+        "question":"How important is having a dog that doesn't shed much?",
+        "answers":[ 
+            { "answer":"I prefer a dog with minimal shedding.", "value":"shedding:1" },
+            { "answer":"A little shedding is OKAY.", "value":"shedding:3" },
+            { "answer":"Not important to me", "value":"shedding:5" }
+         ]
+    },
+
+    "barking":{
+        "question":"In term of barking, how much noise can you tolerate?",
+        "answers":[ 
+            { "answer":"None, I prefer a dog who doesn't bark much.", "value":"barking:1" },
+            { "answer":"Some barking doesn't bother me too much.", "value":"barking:3" },
+            { "answer":"Barking is not an issue for me.", "value":"barking:5" }
+         ]
+    },
+
+    "energy":{
+        "question":"How much will your dog be able to play with you?",
+        "answers":[ 
+            { "answer":"Only indoor playtime.", "value":"energy:1" },
+            { "answer":"A short walk or backyard play", "value":"energy:2" },
+            { "answer":"Occasional long walks", "value":"energy:3" },
+            { "answer":"Daily walk and Jogs", "value":"energy:5" }
+         ]
+    },
+
+    "protectiveness":{
+        "question":"Which best describes your future pet's personality?",
+        "answers":[ 
+            { "answer":"Love everyone.", "value":"protectiveness:1" },
+            { "answer":"Fairly friendly with strangers.", "value":"protectiveness:2" },
+            { "answer":"Moderately protective.", "value":"protectiveness:4" },
+            { "answer":"Highly protective", "value":"protectiveness:5" }
+         ]
+    },
+
+    "trainability":{
+        "question":"How much training will your new dog receive?",
+        "answers":[ 
+            { "answer":"NONE", "value":"trainability:1" },
+            { "answer":"Basic obedience", "value":"trainability:3" },
+            { "answer":"Advanced obedience", "value":"trainability:5" }
+         ]
+    },
+
+    "weight":{
+        "question":"How big or small will your new dog be?",
+        "answers":[ 
+            { "answer":"15 lbs and under", "value":"max_weight:15" },
+            { "answer":"15 - 30 lbs", "value":"min_weight:15, max_weight:30" },
+            { "answer":"30 - 50 lbs", "value":"min_weight:30, max_weight:50" },
+            { "answer":"50 - 110 lbs", "value":"min_weight:50, max_weight:110" },
+            { "answer":"110 lbs and over", "value":"min_weight:110"},
+            { "answer":"No preference", "value":""}
+         ]
+    }
+
+}
