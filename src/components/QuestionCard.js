@@ -6,6 +6,7 @@ const QuestionCard = ({
   handleClick,
   indexNum,
 }) => {
+  console.log("called")
   return (
     <div>
       <section className="question-section" style={{ backgroundColor: "red" }}>

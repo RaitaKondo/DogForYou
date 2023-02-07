@@ -5,34 +5,38 @@ import { nanoid } from "nanoid"
 
 const DogForm = () => {
   const [data, setData] = React.useState("")
-
+  const [answersToCook, setAnswersToCook] = React.useState([])
   const questionsToCook = []
-  const answersToCook = []
 
+  const coating = []
   // * make an question form which have question and answer interact part. ------------------<
-  Object.keys(questions).map((item, index) => {
-    questionsToCook.push(questions[item].question)
+  React.useEffect(() => {
+    Object.keys(questions).map((item, index) => {
+      questionsToCook.push(questions[item].question)
 
-    const answers4Question = []
-    questions[item].answers.map(item => {
-      item = { ...item, id: nanoid(), isSelected: false }
-      answers4Question.push(item)
+      const answers4Question = []
+      questions[item].answers.map(item => {
+        item = { ...item, id: nanoid(), isSelected: false }
+        answers4Question.push(item)
+      })
+      coating.push(answers4Question)
     })
-    answersToCook.push(answers4Question)
-  })
+    setAnswersToCook(coating)
+    console.log("hi")
+  }, [])
 
+  // const yoyo = []
+  // yoyo.push(coating)
+  // // todo: try useEffect
+  // React.useEffect(() => {
+  //   setAnswersToCook(yoyo.flat())
+  // }, yoyo)
+  // console.log(coating)
+  // setAnswersToCook(current => [...current, answers4Question])
   // * make an question form which have question and answer interact part. ------------------>
+  console.log("hi2")
   const renderQues = questionsToCook.map((item, index) => {
     const ansBlock = answersToCook[index]
-
-    // function handleClick(e, id, indexNum, boolean) {
-    //   answersToCook[indexNum] = answersToCook[indexNum].map(item => {
-    //     return item.id === id
-    //       ? { ...item, isSelected: true }
-    //       : { ...item, isSelected: false }
-    //   })
-    //   console.log(e)
-    // }
 
     return (
       <QuestionCard
