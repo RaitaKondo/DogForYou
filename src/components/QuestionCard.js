@@ -1,12 +1,7 @@
 import React from "react"
 
-const QuestionCard = ({
-  question = "",
-  answers = [],
-  handleClick,
-  indexNum,
-}) => {
-  console.log("called")
+const QuestionCard = ({ question = "", answers = [], handleClick }) => {
+  console.log(answers)
   return (
     <div>
       <section
@@ -19,6 +14,7 @@ const QuestionCard = ({
       <section className="answer-section">
         <div className="answers-container">
           {answers.map((item, index) => {
+            console.log(item.id)
             const ansStyle = item.isSelected
               ? { backgroundColor: "CornFlowerBlue" }
               : { backgroundColor: "none" }
@@ -28,7 +24,7 @@ const QuestionCard = ({
                 <button
                   style={ansStyle}
                   onClick={
-                    e => handleClick(e, item.id, indexNum, item.isSelected)
+                    e => handleClick(e, item.id)
                     // item.isSelected != item.isSelected
                     // console.log(item.isSelected)
                   }

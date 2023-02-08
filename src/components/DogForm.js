@@ -6,71 +6,113 @@ import { nanoid } from "nanoid"
 const DogForm = () => {
   const [data, setData] = React.useState("")
   const [answersToCook, setAnswersToCook] = React.useState([])
+  const [newAnswersToCook, setNewAnswersToCook] = React.useState([])
   const questionsToCook = []
   const [renderQues, setRenderQues] = React.useState()
 
   const coating = []
   // * make an question form which have question and answer interact part. ------------------<
+  // React.useEffect(() => {
+  //   Object.keys(questions).map((item, index) => {
+  //     questionsToCook.push(questions[item].question)
+
+  //     const answers4Question = []
+  //     questions[item].answers.map(item => {
+  //       item = { ...item, id: nanoid(), isSelected: false }
+  //       answers4Question.push(item)
+  //     })
+  //     coating.push(answers4Question)
+  //   })
+  //   setAnswersToCook(coating)
+  //   console.log("hi")
+  //   const renderQues = questionsToCook.map((item, index) => {
+  //     const ansBlock = coating[index]
+
+  //     return (
+  //       <QuestionCard
+  //         question={item}
+  //         answers={ansBlock}
+  //         handleClick={handleClick}
+  //         indexNum={index}
+  //       />
+  //     )
+  //   })
+  //   setRenderQues(renderQues)
+  // }, [])
+
+  const answerToCook = []
+  Object.keys(questions).map((item, index) => {
+    questionsToCook.push(questions[item].question)
+
+    const groupingArray = []
+    questions[item].answers.map(item => {
+      item = { ...item, id: nanoid(), isSelected: false }
+      groupingArray.push(item)
+    })
+    answerToCook.push(groupingArray)
+  })
   React.useEffect(() => {
-    Object.keys(questions).map((item, index) => {
-      questionsToCook.push(questions[item].question)
-
-      const answers4Question = []
-      questions[item].answers.map(item => {
-        item = { ...item, id: nanoid(), isSelected: false }
-        answers4Question.push(item)
-      })
-      coating.push(answers4Question)
-    })
-    setAnswersToCook(coating)
-    console.log("hi")
-    const renderQues = questionsToCook.map((item, index) => {
-      const ansBlock = coating[index]
-
-      return (
-        <QuestionCard
-          question={item}
-          answers={ansBlock}
-          handleClick={handleClick}
-          indexNum={index}
-        />
-      )
-    })
-    setRenderQues(renderQues)
+    setNewAnswersToCook(answerToCook)
   }, [])
 
-  console.log(renderQues)
+  const renderThis = questionsToCook.map((item, index) => {
+    const question = item
+
+    console.log(answerToCook) //line 92 same id with
+    const currentAnsBlock = answerToCook[index]
+    console.log(currentAnsBlock)
+    return (
+      <QuestionCard
+        question={question}
+        answers={currentAnsBlock}
+        handleClick={handleClick}
+      />
+    )
+  })
+  console.log(newAnswersToCook) //line 100 same id with  /  QuestionCard.js id is totally different
   // * make an question form which have question and answer interact part. ------------------>
-  console.log("hi2")
 
   // function handleClick(e, id, indexNum, boolean) {
-  //   answersToCook[indexNum] = answersToCook[indexNum].map(item => {
+  //   const newBlock = newAnswersToCook[indexNum].map(item => {
   //     return item.id === id
   //       ? { ...item, isSelected: true }
   //       : { ...item, isSelected: false }
   //   })
-  //   console.log(e)
+
+  //   const copyBlocks = newAnswersToCook
+  //   copyBlocks[indexNum] = newBlock
+  //   setNewAnswersToCook(copyBlocks)
+  //   // setNewAnswersToCook(prev => {
+  //   // })
   // }
 
-  function handleClick(e, id, indexNum, boolean) {
-    const test = []
-    console.log(answersToCook)
-
-    answersToCook.map(block => {
-      console.log(block)
-      block.map(item => {
-        console.log(item)
-        // test.push(
-        //   item.id === id
-        //     ? { ...item, isSelected: true }
-        //     : { ...item, isSelected: false }
-        // )
+  function handleClick(e, id) {
+    console.log(id) //second render's id
+    const newBlock = newAnswersToCook.map(block => {
+      return block.map(item => {
+        return item.id === id
+          ? { ...item, isSelected: true }
+          : { ...item, isSelected: false }
       })
     })
-    // setAnswersToCook(newAns)
+    console.log(newBlock) //first render's id
   }
+  // function handleClick(e, id, indexNum, boolean) {
+  //   const test = []
 
-  console.log(answersToCook)
+  //   answerToCook.map(block => {
+  //     console.log(block)
+  //     block.map(item => {
+  //       console.log(item)
+  //       // test.push(
+  //       //   item.id === id
+  //       //     ? { ...item, isSelected: true }
+  //       //     : { ...item, isSelected: false }
+  //       // )
+  //     })
+  //   })
+  //   // setAnswersToCook(newAns)
+  // }
 
   function makingQuery() {
     let query = ""
@@ -112,7 +154,7 @@ const DogForm = () => {
 
   return (
     <section>
-      {renderQues}
+      {renderThis}
       {JSON.stringify(data)}
       <br />
       <button onClick={callingAPI}>call api</button>
