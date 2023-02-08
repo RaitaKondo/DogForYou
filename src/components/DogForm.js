@@ -7,6 +7,7 @@ const DogForm = () => {
   const [data, setData] = React.useState("")
   const [answersToCook, setAnswersToCook] = React.useState([])
   const questionsToCook = []
+  const [renderQues, setRenderQues] = React.useState()
 
   const coating = []
   // * make an question form which have question and answer interact part. ------------------<
@@ -23,38 +24,50 @@ const DogForm = () => {
     })
     setAnswersToCook(coating)
     console.log("hi")
+    const renderQues = questionsToCook.map((item, index) => {
+      const ansBlock = coating[index]
+
+      return (
+        <QuestionCard
+          question={item}
+          answers={ansBlock}
+          handleClick={handleClick}
+          indexNum={index}
+        />
+      )
+    })
+    setRenderQues(renderQues)
   }, [])
 
-  // const yoyo = []
-  // yoyo.push(coating)
-  // // todo: try useEffect
-  // React.useEffect(() => {
-  //   setAnswersToCook(yoyo.flat())
-  // }, yoyo)
-  // console.log(coating)
-  // setAnswersToCook(current => [...current, answers4Question])
+  console.log(renderQues)
   // * make an question form which have question and answer interact part. ------------------>
   console.log("hi2")
-  const renderQues = questionsToCook.map((item, index) => {
-    const ansBlock = answersToCook[index]
 
-    return (
-      <QuestionCard
-        question={item}
-        answers={ansBlock}
-        handleClick={handleClick}
-        indexNum={index}
-      />
-    )
-  })
+  // function handleClick(e, id, indexNum, boolean) {
+  //   answersToCook[indexNum] = answersToCook[indexNum].map(item => {
+  //     return item.id === id
+  //       ? { ...item, isSelected: true }
+  //       : { ...item, isSelected: false }
+  //   })
+  //   console.log(e)
+  // }
 
   function handleClick(e, id, indexNum, boolean) {
-    answersToCook[indexNum] = answersToCook[indexNum].map(item => {
-      return item.id === id
-        ? { ...item, isSelected: true }
-        : { ...item, isSelected: false }
+    const test = []
+    console.log(answersToCook)
+
+    answersToCook.map(block => {
+      console.log(block)
+      block.map(item => {
+        console.log(item)
+        // test.push(
+        //   item.id === id
+        //     ? { ...item, isSelected: true }
+        //     : { ...item, isSelected: false }
+        // )
+      })
     })
-    console.log(e)
+    // setAnswersToCook(newAns)
   }
 
   console.log(answersToCook)

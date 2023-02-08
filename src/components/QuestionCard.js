@@ -9,7 +9,10 @@ const QuestionCard = ({
   console.log("called")
   return (
     <div>
-      <section className="question-section" style={{ backgroundColor: "red" }}>
+      <section
+        className="question-section"
+        style={{ backgroundColor: "red", border: "solid 1px black" }}
+      >
         <div className="question-container">{String(question)}</div>
       </section>
 
