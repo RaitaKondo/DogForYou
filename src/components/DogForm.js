@@ -74,6 +74,7 @@ const DogForm = () => {
         question={question}
         answers={currentAnsBlock}
         handleClick={handleClick}
+        indexNum={index}
       />
     )
   })
@@ -93,15 +94,17 @@ const DogForm = () => {
   //   // setNewAnswersToCook(prev => {
   //   // })
   // }
-  console.log("rendered")
-  function handleClick(e, id) {
-    console.log(id) //second render's id
-    const newBlock = newAnswersToCook.map(block => {
-      return block.map(item => {
-        return item.id === id
-          ? { ...item, isSelected: true }
-          : { ...item, isSelected: false }
-      })
+  function handleClick(e, id, indexNum) {
+    // console.log(indexNum)
+    const newBlock = newAnswersToCook.map((block, index) => {
+      // if (index === indexNum) console.log(block)
+      return index === indexNum
+        ? block.map(item => {
+            return item.id === id
+              ? { ...item, isSelected: true }
+              : { ...item, isSelected: false }
+          })
+        : block
     })
     // console.log(newBlock) //first render's id
     setNewAnswersToCook(newBlock)
@@ -125,7 +128,7 @@ const DogForm = () => {
 
   function makingQuery() {
     let query = ""
-    answersToCook.map(item => {
+    newAnswersToCook.map(item => {
       item.map(answer => {
         if (answer.isSelected === true) {
           const splittedAns = answer.value.split(",")

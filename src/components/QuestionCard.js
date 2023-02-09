@@ -1,6 +1,11 @@
 import React from "react"
 
-const QuestionCard = ({ question = "", answers = [], handleClick }) => {
+const QuestionCard = ({
+  question = "",
+  answers = [],
+  handleClick,
+  indexNum,
+}) => {
   //   console.log(answers)
   return (
     <div>
@@ -24,7 +29,7 @@ const QuestionCard = ({ question = "", answers = [], handleClick }) => {
                 <button
                   style={ansStyle}
                   onClick={
-                    e => handleClick(e, item.id)
+                    e => handleClick(e, item.id, indexNum)
                     // item.isSelected != item.isSelected
                     // console.log(item.isSelected)
                   }
