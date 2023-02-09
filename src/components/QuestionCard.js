@@ -1,7 +1,7 @@
 import React from "react"
 
 const QuestionCard = ({ question = "", answers = [], handleClick }) => {
-  console.log(answers)
+  //   console.log(answers)
   return (
     <div>
       <section
@@ -14,10 +14,10 @@ const QuestionCard = ({ question = "", answers = [], handleClick }) => {
       <section className="answer-section">
         <div className="answers-container">
           {answers.map((item, index) => {
-            console.log(item.id)
+            // console.log(item.id)
             const ansStyle = item.isSelected
               ? { backgroundColor: "CornFlowerBlue" }
-              : { backgroundColor: "none" }
+              : { backgroundColor: "white" }
 
             return (
               <div className="answer-container">

@@ -6,11 +6,21 @@ import { nanoid } from "nanoid"
 const DogForm = () => {
   const [data, setData] = React.useState("")
   const [answersToCook, setAnswersToCook] = React.useState([])
-  const [newAnswersToCook, setNewAnswersToCook] = React.useState([])
+  const [newAnswersToCook, setNewAnswersToCook] = React.useState(
+    Object.keys(questions).map(item => {
+      const groupArr = []
+      questions[item].answers.map(item => {
+        item = { ...item, id: nanoid(), isSelected: false }
+        groupArr.push(item)
+      })
+      return groupArr
+    })
+  )
   const questionsToCook = []
   const [renderQues, setRenderQues] = React.useState()
 
   const coating = []
+  console.log(newAnswersToCook)
   // * make an question form which have question and answer interact part. ------------------<
   // React.useEffect(() => {
   //   Object.keys(questions).map((item, index) => {
@@ -51,16 +61,14 @@ const DogForm = () => {
     })
     answerToCook.push(groupingArray)
   })
-  React.useEffect(() => {
-    setNewAnswersToCook(answerToCook)
-  }, [])
+  // React.useEffect(() => {
+  //   setNewAnswersToCook(answerToCook)
+  // }, [])
 
   const renderThis = questionsToCook.map((item, index) => {
     const question = item
 
-    console.log(answerToCook) //line 92 same id with
-    const currentAnsBlock = answerToCook[index]
-    console.log(currentAnsBlock)
+    const currentAnsBlock = newAnswersToCook[index]
     return (
       <QuestionCard
         question={question}
@@ -85,7 +93,7 @@ const DogForm = () => {
   //   // setNewAnswersToCook(prev => {
   //   // })
   // }
-
+  console.log("rendered")
   function handleClick(e, id) {
     console.log(id) //second render's id
     const newBlock = newAnswersToCook.map(block => {
@@ -95,7 +103,8 @@ const DogForm = () => {
           : { ...item, isSelected: false }
       })
     })
-    console.log(newBlock) //first render's id
+    // console.log(newBlock) //first render's id
+    setNewAnswersToCook(newBlock)
   }
   // function handleClick(e, id, indexNum, boolean) {
   //   const test = []
